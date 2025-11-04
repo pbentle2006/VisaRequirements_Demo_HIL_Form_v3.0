@@ -23,11 +23,14 @@ def check_dependencies():
     """Check if all required dependencies are available"""
     missing_deps = []
     
+    # Check core dependencies
     try:
         import langchain
         from langchain.prompts import PromptTemplate
+        from langchain_openai import ChatOpenAI
+        from langchain_community.document_loaders import TextLoader
     except ImportError as e:
-        missing_deps.append(f"langchain: {e}")
+        missing_deps.append(f"langchain components: {e}")
     
     try:
         import pandas
@@ -38,6 +41,11 @@ def check_dependencies():
         import plotly
     except ImportError as e:
         missing_deps.append(f"plotly: {e}")
+        
+    try:
+        import pydantic
+    except ImportError as e:
+        missing_deps.append(f"pydantic: {e}")
     
     return missing_deps
 
