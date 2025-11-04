@@ -1,0 +1,20 @@
+# Core Streamlit and web framework
+streamlit==1.28.1
+pandas==2.0.3
+plotly==5.17.0
+
+# Environment and configuration
+python-dotenv==1.0.0
+pyyaml==6.0.1
+
+# Document processing (lightweight versions)
+PyPDF2==3.0.1
+python-docx==0.8.11
+openpyxl==3.1.2
+
+# LangChain (minimal for demo mode)
+langchain==0.1.0
+pydantic==2.4.2
+
+# Additional utilities
+networkx==3.2.1

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: visa-requirements-demo
+    env: python
+    buildCommand: "pip install -r requirements_cloud.txt"
+    startCommand: "streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0"
+    plan: free
+    envVars:
+      - key: VISA_AGENT_VERSION
+        value: v1.2_human_loop
+      - key: VISA_AGENT_FORCE_LLM
+        value: "false"

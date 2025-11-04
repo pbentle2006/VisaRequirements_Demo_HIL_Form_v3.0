@@ -5,9 +5,14 @@ developmentMode = false
 headless = true
 enableCORS = false
 enableXsrfProtection = false
+maxUploadSize = 200
+maxMessageSize = 200
 
 [browser]
 gatherUsageStats = false
+
+[logger]
+level = "info"
 
 [theme]
 primaryColor = "#1f77b4"
