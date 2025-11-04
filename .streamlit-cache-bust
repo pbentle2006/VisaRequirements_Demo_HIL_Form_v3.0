@@ -1,0 +1,10 @@
+CACHE_BUST_VERSION=2024.11.04.2
+DEPLOYMENT_TIMESTAMP=2024-11-04T14:15:00Z
+FORCE_REBUILD=true
+
+This file forces Streamlit Cloud to rebuild the application.
+Latest changes include:
+- Fixed LangChain import issues
+- Added professional demo preview mode
+- Pinned stable dependency versions
+- Removed conflicting requirements files
