@@ -48,13 +48,13 @@ def _show_sample_document_selection() -> Dict[str, Any]:
     selected_policy = st.selectbox("Select Policy Document", list(policy_options.keys()))
     policy_filename = policy_options[selected_policy]
     
-    # Use absolute path to ensure it works
-    base_path = Path("/Users/peterbentley/CascadeProjects/visa-requirements-agent-demo")
+    # Use relative path from project root to work in any environment
+    project_root = Path(__file__).parent.parent.parent
     
     if "Synthetic" in selected_policy:
-        policy_path = base_path / 'data' / 'synthetic' / policy_filename
+        policy_path = project_root / 'data' / 'synthetic' / policy_filename
     else:
-        policy_path = base_path / 'data' / 'input' / policy_filename
+        policy_path = project_root / 'data' / 'input' / policy_filename
     
     st.info(f"Using: {selected_policy}")
     
