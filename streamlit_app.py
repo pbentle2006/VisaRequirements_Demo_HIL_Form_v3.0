@@ -25,15 +25,7 @@ def check_dependencies():
     """Check if all required dependencies are available"""
     missing_deps = []
     
-    # Check core dependencies
-    try:
-        import langchain
-        from langchain.prompts import PromptTemplate
-        from langchain_openai import ChatOpenAI
-        from langchain_community.document_loaders import TextLoader
-    except ImportError as e:
-        missing_deps.append(f"langchain components: {e}")
-    
+    # Check essential dependencies only
     try:
         import pandas
     except ImportError as e:
@@ -43,11 +35,15 @@ def check_dependencies():
         import plotly
     except ImportError as e:
         missing_deps.append(f"plotly: {e}")
-        
+    
+    # LangChain is optional - if missing, we'll show demo preview
+    langchain_available = True
     try:
-        import pydantic
-    except ImportError as e:
-        missing_deps.append(f"pydantic: {e}")
+        import langchain
+        from langchain.prompts import PromptTemplate
+    except ImportError:
+        langchain_available = False
+        missing_deps.append("LangChain components (will show demo preview)")
     
     return missing_deps
 
@@ -84,16 +80,31 @@ def show_dependency_error(missing_deps):
 # Check dependencies first
 missing_deps = check_dependencies()
 
+# Check if we have critical failures (pandas, plotly) vs just LangChain missing
+critical_failures = [dep for dep in missing_deps if not dep.startswith("LangChain")]
+
+if critical_failures:
+    # Critical dependencies missing - show error
+    st.error(f"""
+    ## 🚨 Critical Dependencies Missing
+    
+    Essential components failed to install: {', '.join(critical_failures)}
+    
+    Please try the local version for full functionality.
+    """)
+    st.stop()
+
+# If only LangChain is missing, show demo preview
 if missing_deps:
-    # If LangChain is missing, show a working demo instead of just an error
+    # LangChain missing, show professional demo preview
     st.title("🛂 Visa Requirements Agent V3.0 - Demo Preview")
     
-    st.error(f"""
-    ## 🚨 LangChain Installation Issue
+    st.info("""
+    ## 📋 Cloud Deployment Notice
     
-    The cloud deployment is missing LangChain components: {', '.join(missing_deps)}
+    **LangChain components are not available in this cloud deployment.**
     
-    **This is a known Streamlit Cloud issue. The full demo works perfectly locally.**
+    **The full interactive demo works perfectly when run locally.**
     """)
     
     # Show a preview of what the demo contains
