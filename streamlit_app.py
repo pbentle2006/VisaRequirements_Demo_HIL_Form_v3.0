@@ -36,14 +36,14 @@ def check_dependencies():
     except ImportError as e:
         missing_deps.append(f"plotly: {e}")
     
-    # LangChain is optional - if missing, we'll show demo preview
+    # LangChain check - try to import core components
     langchain_available = True
     try:
         import langchain
         from langchain.prompts import PromptTemplate
     except ImportError:
         langchain_available = False
-        missing_deps.append("LangChain components (will show demo preview)")
+        missing_deps.append("LangChain components")
     
     return missing_deps
 
