@@ -1,0 +1,16 @@
+# Minimal requirements for Streamlit Cloud deployment
+streamlit
+pandas
+plotly
+python-dotenv
+pyyaml
+PyPDF2
+python-docx
+openpyxl
+networkx
+
+# LangChain - essential components only
+langchain
+langchain-openai
+langchain-community
+pydantic
